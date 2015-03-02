@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+
+<style type="text/css"> 
+
+</style>
+
+<br/ >
+<div align="center">
+<img src="navBar.jpg" width="1257" height="96" alt="Navigation Bar" usemap="#navBar" 
+style="box-shadow: -20px -20px 15px #0099FF, 20px 20px 15px #00FF00" />
+        <map name="navBar" id="navBar">
+                <area shape="rect" coords="0,1,206,95" href="northAmerica.html" alt="Home Page" />
+                <area shape="rect" coords="244,0,568,95" href="worldMap.html" alt="Animal Map" />
+                <area shape="rect" coords="601,0,835,95" href="purchaseForm.html" alt="Store" />
+                <area shape="rect" coords="876,0,1256,95" href="zooSurvey.html" alt="Take a Survey!" />
+        </map>
+</div>
+<br/ >
+
+<link rel="stylesheet" type="text/css" href="sheet.css" />
+
+<meta content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="sheet.css">
+
+<script type="text/javascript">
+window.onerror = function(msg, url, linenumber) {
+    alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+    return true;
+};
+
+function validate() {
+    var result = true;
+
+    var namefield = document.getElementById("yourname");
+    var nameerr = document.getElementById("nameerr");
+    var namefieldRE = /^[\w ]+$/;
+
+    var emailfield = document.getElementById("youremail");
+    var emailerr = document.getElementById("emailerr");
+
+    var emailfieldRE = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/ ;
+
+    if(!namefield.value.match(namefieldRE)){
+        nameerr.innerHTML = "Please fill in your name";
+        nameerr.style.color = "#ff0000";
+        result = false;
+    } else{
+        nameerr.innerHTML = "";
+        result = true;
+    }
+
+    if (!emailfield.value.match(emailfieldRE)){
+        emailerr.innerHTML = "Please fill in your email";
+        emailerr.style.color = "#ff0000";
+        result = false;
+    } else{
+        emailerr.innerHTML = "";
+        result = true;
+    }
+
+    return result;
+}
+
+function doTotals() {
+    var animals = ['Tiger_', 'bobcat_', 'elephant_', 'penguin_'];
+    var priceStr = 'price';
+    var quantityStr = 'quantity';
+    var subtotalStr = 'subtotal';
+    var total = 0;
+    for (var i = 0; i < animals.length; i++) {
+        var price = document.getElementById(animals[i] + priceStr).value;
+        var quantity = document.getElementById(animals[i] + quantityStr).value;
+        document.getElementById(animals[i] + subtotalStr)
+            .innerHTML = parseInt(price) * parseInt(quantity);
+        total += price * quantity;
+    }
+    document.getElementById("finaltotal").innerHTML = total;
+}
+
+function setup() {
+    var lastCol = document.getElementById("subtotal_header");
+
+    var theForm = document.getElementById("souvenirsorderform");
+
+    var amounts = document.getElementsByTagName("select");
+    for(var i = 0; i < amounts.length; i++){
+        amounts[i].onchange = doTotals;
+    }
+
+    theForm.onsubmit = validate;
+}
+
+window.onload = setup;
+
+</script>
+<title>ITS 110 Zoo: Gift Shop</title>
+</head>
+
+<body>
+
+<div align="center">
+<table>
+<tr>
+<td>
+<img src="logoZoo.gif" width="280" height="224" alt="Home Page" usemap="#logoZoo" style="border:none" />
+<map name="logoZoo" id="logoZoo">
+                <area shape="circle" coords="141,114,120" href="northAmerica.html" alt="Home Page" />
+        </map>
+</td>
+<td>
+<h1>Purchase&nbsp;</h1>
+</td>
+<td>
+<h1>some&nbsp;</h1>
+</td>
+<td>
+<h1>souvenirs!</h1>
+</td>
+</tr>
+</table>
+<div>
+
+<p><b>Don't leave our site without getting your very own ITS110 Zoo souvenirs!
+<br/ >
+Once you've placed your order, we'll ship your items to the zoo so they're ready when you come for a visit- or we will
+send it directly to your home! </b></p>
+<br/ >
+
+<h2 style="font-size:24Pt"><b>Place your order:</b></h2>
+
+<form method="post" action="#" name="souvenirsorderform" id="souvenirsorderform" onsubmit="return validate()">
+
+<table>
+
+<tr>
+<td><label for="Tiger_quantity"><b>Tiger Plush</b></label></td>
+<td><img src="tigerplush.gif" width="200" height="200"/></img></td>
+<td>$3<input type="hidden" id="Tiger_price" value="3.00"><br/>
+<select id="Tiger_quantity" name="Tiger_quantity" size="1">
+<option value="10">10</option>
+<option value="9">9</option>
+<option value="8">8</option>
+<option value="7">7</option>
+<option value="6">6</option>
+<option value="5">5</option>
+<option value="4">4</option>
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected>0</option>
+</select>
+</td>
+<td id="Tiger_subtotal"></td>
+<td><label for="bobcat_quantity"><b>Monkey Plush</b></label></td>
+<td><img src="monkey.gif" width="200" height="200"/></img></td>
+<td>$3.50<input type="hidden" id="bobcat_price" value="3.50">
+<select id="bobcat_quantity" name="bobcat_quantity" size="1"><br/ >
+<option value="10">10</option>
+<option value="9">9</option>
+<option value="8">8</option>
+<option value="7">7</option>
+<option value="6">6</option>
+<option value="5">5</option>
+<option value="4">4</option>
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected>0</option>
+</select>
+</td>
+<td id="bobcat_subtotal"></td>
+</tr>
+
+<tr>
+<td><label for="Elephant_quantity"><b>Elephant Shirt</b></label></td>
+<td><img src="shirt.gif" width="200" height="200"/></img></td>
+<td>$12<input type="hidden" id="elephant_price" value="12.00">
+<select id="elephant_quantity" name="elephant_quantity" size="1"><br/ >
+<option value="10">10</option>
+<option value="9">9</option>
+<option value="8">8</option>
+<option value="7">7</option>
+<option value="6">6</option>
+<option value="5">5</option>
+<option value="4">4</option>
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected>0</option>
+</select>
+</td>
+<td id="elephant_subtotal"></td>
+<td><label for="penguin_quantity"><b>Penguin Shirt</b></label></td>
+<td><img src="penshirt.gif" width="200" height="200" /></img></td>
+<td>$12<input type="hidden" id="penguin_price" value="12.00"><br/ >
+<select id="penguin_quantity" name="penguin_quantity" size="1">
+<option value="10">10</option>
+<option value="9">9</option>
+<option value="8">8</option>
+<option value="7">7</option>
+<option value="6">6</option>
+<option value="5">5</option>
+<option value="4">4</option>
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+<option value="0" selected>0</option>
+</select>
+</td>
+<td id="penguin_subtotal"></td>
+</tr>
+
+<tr id="tablefoot"><td>Total:</td><td colspan="2" id="totalerr"><td id="finaltotal"></td></tr>
+
+</table>
+
+<p><b><label for="yourname">Your Full Name:</label>
+<input name="yourname" id="yourname" type="text">
+<span id="nameerr"></span></b></p>
+<p><b><label for="youremail">Your E-Mail Address to Confirm the Order:</label>
+<input name="youremail" id="youremail" type="text">
+<span id="emailerr"></span></b></p>
+
+<div><input id="submit" type="submit" value="Place Order"/>
+<input id="reset" type="reset" value="Clear Order"/>
+<br/ >
+</form>
+
+</body>
+</html>
